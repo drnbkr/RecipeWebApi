@@ -1,1 +1,11 @@
 /.DS_Store
+Services/bin
+Services/obj
+Repositories/bin
+Repositories/obj
+RecipeWebApi/bin
+RecipeWebApi/obj
+Presentation/bin
+Presentation/obj
+Entities/bin
+Entities/obj
