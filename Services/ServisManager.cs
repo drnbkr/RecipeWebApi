@@ -5,6 +5,7 @@ namespace Services
 {
     public class ServisManager : IServiceManager
     {
+        //test
         private readonly Lazy<IRecipeService> _recipeService;
         public ServisManager(IRepositoryManager repositoryManager, ILoggerService loggerService)
         {
