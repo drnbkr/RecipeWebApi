@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Entities.Models;
+using Entities.RequestFeatures;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
 
 namespace Repositories.EFCore
 {
-    public class RecipeRepository : RepositoryBase<Recipe>, IRecipeRepository
+    public sealed class RecipeRepository : RepositoryBase<Recipe>, IRecipeRepository
     {
         public RecipeRepository(RepositoryContext context) : base(context)
         {
@@ -17,12 +15,20 @@ namespace Repositories.EFCore
 
         public void DeleteOneRecipe(Recipe recipe) => Delete(recipe);
 
-        public IQueryable<Recipe> GetAllRecipes(bool trackChanges) =>
-            FindAll(trackChanges)
-            .OrderBy(r => r.Id);
+        public async Task<PagedList<Recipe>> GetAllRecipesAsync(RecipeParameters recipeParameters, bool trackChanges)
+        {
 
-        public Recipe GetOneRecipeById(int id, bool trackChanges) =>
-            FindByCondition(r => r.Id.Equals(id), trackChanges).SingleOrDefault();
+            var recipes = await FindAll(trackChanges)
+                .FilterRecipes(recipeParameters.MinCalorie, recipeParameters.MaxCalorie)
+                .Search(recipeParameters.SearchTerm)
+                .Sort(recipeParameters.OrderBy)
+                .ToListAsync();
+
+            return PagedList<Recipe>.ToPagedList(recipes, recipeParameters.PageNumber, recipeParameters.PageSize);
+        }
+
+        public async Task<Recipe> GetOneRecipeByIdAsync(int id, bool trackChanges) =>
+           await FindByCondition(r => r.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
 
         public void UpdateOneRecipe(Recipe recipe) => Update(recipe);
     }

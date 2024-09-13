@@ -1,11 +1,12 @@
 using Entities.Models;
+using Entities.RequestFeatures;
 
 namespace Repositories.Contracts
 {
     public interface IRecipeRepository : IRepositoryBase<Recipe>
     {
-        IQueryable<Recipe> GetAllRecipes(bool trackChanges);
-        Recipe GetOneRecipeById(int id, bool trackChanges);
+        Task<PagedList<Recipe>> GetAllRecipesAsync(RecipeParameters recipeParameters, bool trackChanges);
+        Task<Recipe> GetOneRecipeByIdAsync(int id, bool trackChanges);
         void CreateOneRecipe(Recipe recipe);
         void UpdateOneRecipe(Recipe recipe);
         void DeleteOneRecipe(Recipe recipe);

@@ -10,14 +10,14 @@ namespace Repositories.EFCore
         public RepositoryManager(RepositoryContext context)
         {
             _context = context;
-            _recipeRepository = new Lazy<IRecipeRepository>(()=> new RecipeRepository(_context));
+            _recipeRepository = new Lazy<IRecipeRepository>(() => new RecipeRepository(_context));
         }
 
         public IRecipeRepository Recipe => _recipeRepository.Value;
 
-        public void Save()
+        public async Task SaveAsync()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

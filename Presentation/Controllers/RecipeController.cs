@@ -1,13 +1,17 @@
-using Entities.Models;
+using System.Text.Json;
+using Entities.Dtos;
+using Entities.RequestFeatures;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.ActionFilters;
 using Services.Contracts;
 
 namespace Presentation.Controllers
 {
+    [ServiceFilter(typeof(LogFilterAttribute))]
     [ApiController]
     [Route("api/recipes")]
-     public class RecipesController : ControllerBase
+    public class RecipesController : ControllerBase
     {
         private readonly IServiceManager _manager;
         public RecipesController(IServiceManager manager)
@@ -15,115 +19,84 @@ namespace Presentation.Controllers
             _manager = manager;
         }
 
-        [HttpGet]
-        public IActionResult GetAllRecipes()
+        [HttpHead]
+        [HttpGet(Name = "GetAllRecipesAsync")]
+        [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
+        public async Task<IActionResult> GetAllRecipesAsync([FromQuery] RecipeParameters recipeParameters)
         {
-            try
-            {
-                var recipes = _manager.RecipeService.GetAllRecipes(false);
-                return Ok(recipes);
-            }
-            catch (Exception ex)
-            {
+            var pagedResult = await _manager.RecipeService.GetAllRecipesAsync(recipeParameters, trackChanges: false);
 
-                throw new Exception(ex.Message);
-            }
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
+
+            return Ok(pagedResult.recipes);
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetOneRecipe([FromRoute(Name = "id")] int id)
+        public async Task<IActionResult> GetOneRecipeAsync([FromRoute(Name = "id")] int id)
         {
-            try
-            {
-                var recipe = _manager.RecipeService.GetOneRecipeById(id, false);
+            var recipe = await _manager.RecipeService.GetOneRecipeByIdAsync(id, false);
 
-                if (recipe is null)
-                    return NotFound();
-
-                return Ok(recipe);
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-
-
+            return Ok(recipe);
         }
 
-        [HttpPost]
-        public IActionResult CreateOneRecipe([FromBody] Recipe recipe)
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [HttpPost(Name = "CreateOneRecipeAsync")]
+        public async Task<IActionResult> CreateOneRecipeAsync([FromBody] RecipeDtoForInsertion recipeDtoForInsertion)
         {
-            try
-            {
-                if (recipe is null)
-                    return BadRequest();
+            var recipe = await _manager.RecipeService.CreateOneRecipeAsync(recipeDtoForInsertion);
 
-                _manager.RecipeService.CreateOneRecipe(recipe);
-
-                return StatusCode(201, recipe);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return StatusCode(201, recipe);
         }
 
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPut("{id:int}")]
-        public IActionResult UpdateOneRecipe([FromRoute(Name = "id")] int id, [FromBody] Recipe recipe)
+        public async Task<IActionResult> UpdateOneRecipeAsync([FromRoute(Name = "id")] int id, [FromBody] RecipeDtoForUpdate recipeDto)
         {
-            try
-            {
-                if (recipe is null)
-                    return BadRequest(); //400
+            await _manager.RecipeService.UpdateOneRecipeAsync(id, recipeDto, false);
 
-                _manager.RecipeService.UpdateOneRecipe(id, recipe, true);
-
-                return NoContent(); //204
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-
-
+            return NoContent(); //204
         }
 
         [HttpDelete("{id:int}")]
-        public IActionResult DeleteOneRecipe([FromRoute(Name = "id")] int id)
+        public async Task<IActionResult> DeleteOneRecipeAsync([FromRoute(Name = "id")] int id)
         {
-            try
-            {
-                _manager.RecipeService.DeleteOneRecipe(id, false);
+            await _manager.RecipeService.DeleteOneRecipeAsync(id, trackChanges: false);
 
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return NoContent();
         }
-
 
         [HttpPatch("{id:int}")]
-        public IActionResult PartiallyUpdateOneRecipe([FromRoute(Name = "id")] int id, [FromBody] JsonPatchDocument<Recipe> recipePatch)
+        public async Task<IActionResult> PartiallyUpdateOneRecipeAsync([FromRoute(Name = "id")] int id, [FromBody] JsonPatchDocument<RecipeDtoForUpdate> recipePatch)
         {
-            try
+            if (recipePatch is null)
+                return BadRequest();
+
+
+            var result = await _manager.RecipeService.GetOneRecipeForPatchAsync(id, false);
+
+
+            recipePatch.ApplyTo(result.recipeDtoForUpdate, ModelState);
+
+            TryValidateModel(result.recipeDtoForUpdate);
+            if (!ModelState.IsValid)
             {
-                var entity = _manager.RecipeService.GetOneRecipeById(id, true);
-
-                if (entity is null)
-                    return NotFound();
-
-                recipePatch.ApplyTo(entity);
-                _manager.RecipeService.UpdateOneRecipe(id, entity, true);
-
-                return NoContent();
+                return UnprocessableEntity(ModelState);
             }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+
+            await _manager.RecipeService.SaveChangesForPatchAsync(result.recipeDtoForUpdate, result.recipe);
+
+            return NoContent(); // 204
         }
+
+        [HttpOptions]
+        public IActionResult GetRecipesOptions()
+        {
+            Response.Headers.Add("Allow", "GET, PUT, POST, PATCH, DELETE, HEAD, OPTIONS");
+
+            return Ok();
+        }
+
+
+
     }
 }
