@@ -11,6 +11,7 @@ namespace Presentation.Controllers
     [ServiceFilter(typeof(LogFilterAttribute))]
     [ApiController]
     [Route("api/recipes")]
+    [ResponseCache(CacheProfileName = "5mins")]
     public class RecipesController : ControllerBase
     {
         private readonly IServiceManager _manager;
@@ -22,6 +23,7 @@ namespace Presentation.Controllers
         [HttpHead]
         [HttpGet(Name = "GetAllRecipesAsync")]
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
+        [ResponseCache(Duration = 60)]
         public async Task<IActionResult> GetAllRecipesAsync([FromQuery] RecipeParameters recipeParameters)
         {
             var pagedResult = await _manager.RecipeService.GetAllRecipesAsync(recipeParameters, trackChanges: false);

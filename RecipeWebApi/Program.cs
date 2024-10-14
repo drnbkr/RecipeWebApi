@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 using RecipeWebApi.Extensions;
@@ -13,6 +14,7 @@ builder.Services.AddControllers(config =>
 {
     config.RespectBrowserAcceptHeader = true;
     config.ReturnHttpNotAcceptable = true;
+    config.CacheProfiles.Add("5mins", new CacheProfile() { Duration = 300 });
 })
     .AddXmlDataContractSerializerFormatters()
     .AddCustomCsvFormatter()
@@ -37,6 +39,10 @@ builder.Services.ConfigureActionFilters();
 builder.Services.ConfigureCors();
 builder.Services.ConfigureDataShaper();
 builder.Services.AddCustomMediaTypes();
+builder.Services.ConfigureResponseCaching();
+builder.Services.AddMemoryCache();
+builder.Services.ConfigureRateLimitingOptions();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -54,7 +60,9 @@ if (app.Environment.IsProduction())
     app.UseHsts();
 }
 
+app.UseIpRateLimiting();
 app.UseCors("CorsPolicy");
+app.UseResponseCaching();  //Microsoft says call caching after cors.
 app.UseHttpsRedirection();
 app.MapControllers();
 
