@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Entities.Dtos;
 using Entities.RequestFeatures;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.ActionFilters;
@@ -8,6 +9,7 @@ using Services.Contracts;
 
 namespace Presentation.Controllers
 {
+    [ApiExplorerSettings(GroupName = "v1")]
     [ServiceFilter(typeof(LogFilterAttribute))]
     [ApiController]
     [Route("api/recipes")]
@@ -20,6 +22,7 @@ namespace Presentation.Controllers
             _manager = manager;
         }
 
+        [Authorize(Roles = "Editor, Admin, User")]
         [HttpHead]
         [HttpGet(Name = "GetAllRecipesAsync")]
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
@@ -33,6 +36,15 @@ namespace Presentation.Controllers
             return Ok(pagedResult.recipes);
         }
 
+        [Authorize]
+        [HttpGet("Categories")]
+        public async Task<IActionResult> GetAllRecipesWithCategoriesAsync()
+        {
+            return Ok(await _manager.RecipeService.GetAllRecipesWithCategoriesAsync(false));
+        }
+
+
+        [Authorize(Roles = "Editor, Admin, User")]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetOneRecipeAsync([FromRoute(Name = "id")] int id)
         {
@@ -41,6 +53,7 @@ namespace Presentation.Controllers
             return Ok(recipe);
         }
 
+        [Authorize(Roles = "Admin, Editor")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPost(Name = "CreateOneRecipeAsync")]
         public async Task<IActionResult> CreateOneRecipeAsync([FromBody] RecipeDtoForInsertion recipeDtoForInsertion)

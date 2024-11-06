@@ -1,6 +1,3 @@
-using AutoMapper;
-using Entities.Dtos;
-using Repositories.Contracts;
 using Services.Contracts;
 
 namespace Services
@@ -8,11 +5,33 @@ namespace Services
     public class ServisManager : IServiceManager
     {
         //test 2
-        private readonly Lazy<IRecipeService> _recipeService;
-        public ServisManager(IRepositoryManager repositoryManager, ILoggerService loggerService, IMapper mapper, IDataShaper<RecipeDto> shaper)
+        private readonly IRecipeService _recipeService;
+        private readonly ICategoryService _categoryService;
+        private readonly IAuthenticationService _authenticationService;
+
+        public ServisManager(IRecipeService recipeService, ICategoryService categoryService, IAuthenticationService authenticationService)
         {
-            _recipeService = new Lazy<IRecipeService>(() => new RecipeManager(repositoryManager, loggerService, mapper, shaper));
+            _recipeService = recipeService;
+            _categoryService = categoryService;
+            _authenticationService = authenticationService;
         }
-        public IRecipeService RecipeService => _recipeService.Value;
+
+        // public ServisManager(IRepositoryManager repositoryManager,
+        //     ILoggerService loggerService,
+        //     IMapper mapper,
+        //     IDataShaper<RecipeDto> shaper,
+        //     IConfiguration configuration,
+        //     UserManager<User> userManager)
+        // {
+
+        // }
+        // _categoryService = new Lazy<ICategoryService>(() => new CategoryManager(repositoryManager,mapper));
+        // _recipeService = new Lazy<IRecipeService>(() => new RecipeManager(repositoryManager, loggerService, mapper, shaper, _categoryService.Value));
+        // _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationManager(loggerService, mapper, userManager, configuration));
+        public IRecipeService RecipeService => _recipeService;
+
+        public IAuthenticationService AuthenticationService => _authenticationService;
+
+        public ICategoryService CategoryService => _categoryService ;
     }
 }

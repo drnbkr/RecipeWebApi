@@ -7,10 +7,13 @@ namespace Entities.Dtos
         [Required(ErrorMessage = "Title is a required field.")]
         [MinLength(2, ErrorMessage = "Title must consist of at least 2 characters.")]
         [MaxLength(50, ErrorMessage = "Title must consist of at maximum 50 characters.")]
-        public string Title { get; init; }
+        public required string Title { get; init; }
 
         [Required(ErrorMessage = "Calorie is a required field.")]
         [Range(0, 20000)]
         public decimal Calorie { get; init; }
+
+        [Required(ErrorMessage = "CategoryId is a required.")]
+        public int CategoryId { get; init; }
     }
 }

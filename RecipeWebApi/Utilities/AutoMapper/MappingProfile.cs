@@ -12,6 +12,9 @@ namespace RecipeWebApi.Utilities.AutoMapper
             CreateMap<RecipeDtoForUpdate, Recipe>().ReverseMap();
             CreateMap<Recipe, RecipeDto>();
             CreateMap<RecipeDtoForInsertion, Recipe>();
+            CreateMap<UserForRegistrationDto, User>();
+            CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryDtoForInsertion, Category>();
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositories.EFCore;
 
@@ -11,9 +12,11 @@ using Repositories.EFCore;
 namespace RecipeWebApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20241106105927_UpdateRecipeConfig")]
+    partial class UpdateRecipeConfig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,8 +105,6 @@ namespace RecipeWebApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Recipes");
 
@@ -249,19 +250,19 @@ namespace RecipeWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e8b08742-e048-426a-a6c6-12da9bc3efbf",
+                            Id = "1a1d9a1d-d481-4000-8077-defc958f1ecb",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "40b16e49-098b-4bff-a461-4ad2a4690564",
+                            Id = "21ca44df-7fe8-4cd5-bafd-88cb86d08e83",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "91b11b4f-680b-482f-93cc-c1c1bf6136ea",
+                            Id = "c4019ce6-6852-4890-9a91-074eca708dc8",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -371,17 +372,6 @@ namespace RecipeWebApi.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("Entities.Models.Recipe", b =>
-                {
-                    b.HasOne("Entities.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

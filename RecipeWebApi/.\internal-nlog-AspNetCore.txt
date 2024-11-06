@@ -240,3 +240,153 @@
 2024-10-12 19:00:29.4257 Info Configuration initialized.
 2024-10-13 00:09:23.8909 Info AppDomain Shutting down. LogFactory closing...
 2024-10-13 00:09:23.9025 Info LogFactory has been closed.
+2024-10-14 20:37:43.1094 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-14 20:37:43.1322 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-14 20:37:43.1706 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-14 20:37:43.1748 Info Configuration initialized.
+2024-10-14 20:38:33.6361 Info AppDomain Shutting down. LogFactory closing...
+2024-10-14 20:38:33.6417 Info LogFactory has been closed.
+2024-10-14 20:59:05.6720 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-14 20:59:05.6927 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-14 20:59:05.7237 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-14 20:59:05.7277 Info Configuration initialized.
+2024-10-14 21:01:08.4109 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-14 21:01:08.4238 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-14 21:01:08.4562 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-14 21:01:08.4601 Info Configuration initialized.
+2024-10-14 21:12:48.8257 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-14 21:12:48.8386 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-14 21:12:48.8649 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-14 21:12:48.8689 Info Configuration initialized.
+2024-10-16 21:13:43.9532 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-16 21:13:43.9699 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-16 21:13:44.0128 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-16 21:13:44.0169 Info Configuration initialized.
+2024-10-16 21:16:29.2404 Info AppDomain Shutting down. LogFactory closing...
+2024-10-16 21:16:29.2453 Info LogFactory has been closed.
+2024-10-16 21:25:08.1629 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-16 21:25:08.1884 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-16 21:25:08.2292 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-16 21:25:08.2342 Info Configuration initialized.
+2024-10-16 21:33:04.1889 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-16 21:33:04.1950 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-16 21:33:04.2304 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-16 21:33:04.2348 Info Configuration initialized.
+2024-10-16 21:35:17.2867 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-16 21:35:17.3118 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-16 21:35:17.3404 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-16 21:35:17.3450 Info Configuration initialized.
+2024-10-18 20:38:32.7634 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-18 20:38:32.7918 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-18 20:38:32.8205 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-18 20:38:32.8244 Info Configuration initialized.
+2024-10-21 18:49:57.5698 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-21 18:49:57.5741 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-21 18:49:57.6079 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-21 18:49:57.6124 Info Configuration initialized.
+2024-10-21 18:54:59.0167 Info AppDomain Shutting down. LogFactory closing...
+2024-10-21 18:54:59.0227 Info LogFactory has been closed.
+2024-10-21 19:03:03.3190 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-21 19:03:03.3269 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-21 19:03:03.3592 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-21 19:03:03.3645 Info Configuration initialized.
+2024-10-21 20:22:39.2825 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-21 20:22:39.2913 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-21 20:22:39.3196 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-21 20:22:39.3239 Info Configuration initialized.
+2024-10-21 20:36:21.6423 Info AppDomain Shutting down. LogFactory closing...
+2024-10-21 20:36:21.6491 Info LogFactory has been closed.
+2024-10-21 23:48:04.4882 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-21 23:48:04.4988 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-21 23:48:04.5285 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-21 23:48:04.5329 Info Configuration initialized.
+2024-10-21 23:55:07.4772 Info AppDomain Shutting down. LogFactory closing...
+2024-10-21 23:55:07.4833 Info LogFactory has been closed.
+2024-10-21 23:58:13.9761 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-21 23:58:13.9961 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-21 23:58:14.0328 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-21 23:58:14.0367 Info Configuration initialized.
+2024-10-22 00:08:11.7779 Info AppDomain Shutting down. LogFactory closing...
+2024-10-22 00:08:11.7832 Info LogFactory has been closed.
+2024-10-22 00:08:39.1129 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-22 00:08:39.1285 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-22 00:08:39.1692 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-22 00:08:39.1731 Info Configuration initialized.
+2024-10-23 22:18:01.9172 Info AppDomain Shutting down. LogFactory closing...
+2024-10-23 22:18:01.9678 Info LogFactory has been closed.
+2024-10-29 12:02:55.6669 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-29 12:02:55.7128 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-29 12:02:55.7336 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-29 12:02:55.7389 Info Configuration initialized.
+2024-10-29 12:36:47.4877 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-29 12:36:47.5037 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-29 12:36:47.5434 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-29 12:36:47.5482 Info Configuration initialized.
+2024-10-29 13:14:31.0337 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-29 13:14:31.0510 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-29 13:14:31.0786 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-29 13:14:31.0843 Info Configuration initialized.
+2024-10-29 17:06:44.7553 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-10-29 17:06:44.7637 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-10-29 17:06:44.7998 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-10-29 17:06:44.8050 Info Configuration initialized.
+2024-11-01 10:13:10.6383 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-01 10:13:10.6446 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-01 10:13:10.7223 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-01 10:13:10.7616 Info Configuration initialized.
+2024-11-02 23:58:16.1842 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-02 23:58:16.2133 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-02 23:58:16.3283 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-02 23:58:16.3342 Info Configuration initialized.
+2024-11-05 16:05:38.1840 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-05 16:05:38.2089 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-05 16:05:38.2429 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-05 16:05:38.2477 Info Configuration initialized.
+2024-11-05 16:15:15.6619 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-05 16:15:15.6846 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-05 16:15:15.7197 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-05 16:15:15.7251 Info Configuration initialized.
+2024-11-05 16:23:39.4357 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-05 16:23:39.4673 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-05 16:23:39.5033 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-05 16:23:39.5077 Info Configuration initialized.
+2024-11-06 12:19:14.7191 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-06 12:19:14.7314 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-06 12:19:14.7749 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-06 12:19:14.7799 Info Configuration initialized.
+2024-11-06 14:02:18.7939 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-06 14:02:18.8100 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-06 14:02:18.8355 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-06 14:02:18.8406 Info Configuration initialized.
+2024-11-06 16:55:02.0944 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-06 16:55:02.1019 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-06 16:55:02.1348 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-06 16:55:02.1403 Info Configuration initialized.
+2024-11-06 17:03:09.7907 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-06 17:03:09.8108 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-06 17:03:09.8383 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-06 17:03:09.8434 Info Configuration initialized.
+2024-11-06 17:26:25.8604 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-06 17:26:25.8857 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-06 17:26:25.9229 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-06 17:26:25.9275 Info Configuration initialized.
+2024-11-06 17:32:29.7279 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-06 17:32:29.7560 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-06 17:32:29.7901 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-06 17:32:29.7948 Info Configuration initialized.
+2024-11-06 17:49:05.6304 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-06 17:49:05.6524 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-06 17:49:05.6805 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-06 17:49:05.6852 Info Configuration initialized.
+2024-11-06 18:30:40.1840 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-06 18:30:40.2097 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-06 18:30:40.2450 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-06 18:30:40.2496 Info Configuration initialized.
+2024-11-06 18:41:58.3379 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-06 18:41:58.3596 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-06 18:41:58.3894 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-06 18:41:58.3941 Info Configuration initialized.
+2024-11-06 18:50:40.0633 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-11-06 18:50:40.0931 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-11-06 18:50:40.1319 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=/Users/direnbukre/Documents/GitHub/RecipeApp/RecipeWebApi/bin/Debug/net8.0/NLog.config
+2024-11-06 18:50:40.1371 Info Configuration initialized.

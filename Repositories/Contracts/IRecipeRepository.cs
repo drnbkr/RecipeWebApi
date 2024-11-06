@@ -10,5 +10,6 @@ namespace Repositories.Contracts
         void CreateOneRecipe(Recipe recipe);
         void UpdateOneRecipe(Recipe recipe);
         void DeleteOneRecipe(Recipe recipe);
+        Task<IEnumerable<Recipe>> GetAllRecipesWithCategoriesAsync(bool trackChanges);
     }
 }

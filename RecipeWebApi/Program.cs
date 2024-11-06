@@ -18,8 +18,8 @@ builder.Services.AddControllers(config =>
 })
     .AddXmlDataContractSerializerFormatters()
     .AddCustomCsvFormatter()
-    .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
-// .AddNewtonsoftJson()
+    .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
+    .AddNewtonsoftJson();
 
 
 
@@ -29,7 +29,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 });
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.ConfigureSwagger();
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
@@ -43,6 +43,11 @@ builder.Services.ConfigureResponseCaching();
 builder.Services.AddMemoryCache();
 builder.Services.ConfigureRateLimitingOptions();
 builder.Services.AddHttpContextAccessor();
+builder.Services.ConfigureIdentity();
+builder.Services.ConfigureJwt(builder.Configuration);
+
+builder.Services.RegisterRepositories();
+builder.Services.RegisterServices();
 
 var app = builder.Build();
 
@@ -53,7 +58,12 @@ app.ConfigureExpectionHandler(logger);
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(s =>
+    {
+        s.SwaggerEndpoint("/swagger/v1/swagger.json", "Recipe Web API v1");
+        s.SwaggerEndpoint("/swagger/v2/swagger.json", "Recipe Web API v2");
+
+    });
 }
 if (app.Environment.IsProduction())
 {
@@ -64,6 +74,10 @@ app.UseIpRateLimiting();
 app.UseCors("CorsPolicy");
 app.UseResponseCaching();  //Microsoft says call caching after cors.
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapControllers();
 
 

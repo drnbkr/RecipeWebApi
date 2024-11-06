@@ -5,15 +5,19 @@ namespace Repositories.EFCore
     public class RepositoryManager : IRepositoryManager
     {
         private readonly RepositoryContext _context;
-        private readonly Lazy<IRecipeRepository> _recipeRepository;
+        private readonly IRecipeRepository _recipeRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public RepositoryManager(RepositoryContext context)
+        public RepositoryManager(RepositoryContext context, IRecipeRepository recipeRepository, ICategoryRepository categoryRepository)
         {
             _context = context;
-            _recipeRepository = new Lazy<IRecipeRepository>(() => new RecipeRepository(_context));
+            _recipeRepository = recipeRepository;
+            _categoryRepository = categoryRepository;
         }
 
-        public IRecipeRepository Recipe => _recipeRepository.Value;
+        public IRecipeRepository Recipe => _recipeRepository;
+
+        public ICategoryRepository Category => _categoryRepository;
 
         public async Task SaveAsync()
         {

@@ -12,22 +12,26 @@ namespace Services
 {
     public class RecipeManager : IRecipeService
     {
+        private readonly ICategoryService _categoryService;
         private readonly IRepositoryManager _manager;
         private readonly ILoggerService _logger;
         private readonly IMapper _mapper;
         private readonly IDataShaper<RecipeDto> _shaper;
 
 
-        public RecipeManager(IRepositoryManager manager, ILoggerService logger, IMapper mapper, IDataShaper<RecipeDto> shaper)
+        public RecipeManager(IRepositoryManager manager, ILoggerService logger, IMapper mapper, IDataShaper<RecipeDto> shaper, ICategoryService categoryService)
         {
             _manager = manager;
             _logger = logger;
             _mapper = mapper;
             _shaper = shaper;
+            _categoryService = categoryService;
         }
 
         public async Task<RecipeDto> CreateOneRecipeAsync(RecipeDtoForInsertion recipeDtoForInsertion)
         {
+            var category = await _categoryService.GetOneCategoryByIdAsync(recipeDtoForInsertion.CategoryId, trackChanges: false);
+
             var entity = _mapper.Map<Recipe>(recipeDtoForInsertion);
             _manager.Recipe.CreateOneRecipe(entity);
             await _manager.SaveAsync();
@@ -53,6 +57,11 @@ namespace Services
             var shapedData = _shaper.ShapeData(recipesDto, recipeParameters.Fields);
 
             return (recipes: shapedData, metaData: recipesWithMetaData.MetaData);
+        }
+
+        public async Task<IEnumerable<Recipe>> GetAllRecipesWithCategoriesAsync(bool trackChanges)
+        {
+            return await _manager.Recipe.GetAllRecipesWithCategoriesAsync(trackChanges);
         }
 
         public async Task<RecipeDto> GetOneRecipeByIdAsync(int id, bool trackChanges)
