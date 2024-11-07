@@ -279,8 +279,8 @@ namespace RecipeWebApi.Migrations
             migrationBuilder.DropTable(
                 name: "AspNetUserLogins");
 
-            migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
+            // migrationBuilder.DropTable(
+            //     name: "AspNetUserRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");

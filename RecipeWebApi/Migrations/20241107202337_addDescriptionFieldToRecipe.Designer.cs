@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositories.EFCore;
 
@@ -11,9 +12,11 @@ using Repositories.EFCore;
 namespace RecipeWebApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20241107202337_addDescriptionFieldToRecipe")]
+    partial class addDescriptionFieldToRecipe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,21 +258,21 @@ namespace RecipeWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b7afb518-6211-47f2-a7cb-95e7b500d74f",
+                            Id = "fc2e3b2b-d2fc-4798-b527-0b16854bf52a",
                             Name = "User",
                             NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "f16264a2-d99b-4eaf-9052-8a5581e6ab85",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2bcaf9d9-fa5f-4188-811f-4b0268bfde60",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
+                        },
+                        new
+                        {
+                            Id = "7ea860d3-6139-453c-a487-649e250fb767",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
                         });
                 });
 

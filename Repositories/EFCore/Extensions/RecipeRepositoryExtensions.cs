@@ -18,7 +18,7 @@ namespace Repositories.EFCore
 
             var lowerCaseTerm = searchTerm.Trim().ToLower();
 
-            //dont forget localization
+            //todo  localization, and add search for description(show result after title result)
             return recipes.Where(r => r.Title.ToLower().Contains(searchTerm));
         }
 
