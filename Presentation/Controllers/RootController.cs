@@ -41,6 +41,7 @@ namespace Presentation.Controllers
                         Rel = "recipes",
                         Method ="POST"
                     }
+                    //todo add all links
                 };
 
                 return Ok(list);

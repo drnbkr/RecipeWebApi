@@ -56,6 +56,7 @@ namespace RecipeWebApi.Extensions
         public static void ConfigureDataShaper(this IServiceCollection services)
         {
             services.AddScoped<IDataShaper<RecipeDto>, DataShaper<RecipeDto>>();
+            services.AddScoped<IDataShaper<IngredientDto>, DataShaper<IngredientDto>>();
         }
 
         public static void AddCustomMediaTypes(this IServiceCollection services)
@@ -197,17 +198,21 @@ namespace RecipeWebApi.Extensions
 
 
         }
-    
-        public static void RegisterRepositories(this IServiceCollection services){
+
+        public static void RegisterRepositories(this IServiceCollection services)
+        {
             services.AddScoped<IRecipeRepository, RecipeRepository>()
-                    .AddScoped<ICategoryRepository, CategoryRepository>();
+                    .AddScoped<ICategoryRepository, CategoryRepository>()
+                    .AddScoped<IIngredientRepository, IngredientRepository>();
         }
 
-        public static void RegisterServices(this IServiceCollection services){
+        public static void RegisterServices(this IServiceCollection services)
+        {
             services.AddScoped<IRecipeService, RecipeManager>()
                     .AddScoped<ICategoryService, CategoryManager>()
-                    .AddScoped<IAuthenticationService, AuthenticationManager>();
+                    .AddScoped<IAuthenticationService, AuthenticationManager>()
+                    .AddScoped<IIngredientService, IngredientManager>();
         }
-            
+
     }
 }

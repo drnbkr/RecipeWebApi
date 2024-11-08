@@ -30,6 +30,7 @@ namespace Services
 
         public async Task<RecipeDto> CreateOneRecipeAsync(RecipeDtoForInsertion recipeDtoForInsertion)
         {
+            //checking if category exists
             var category = await _categoryService.GetOneCategoryByIdAsync(recipeDtoForInsertion.CategoryId, trackChanges: false);
 
             var entity = _mapper.Map<Recipe>(recipeDtoForInsertion);

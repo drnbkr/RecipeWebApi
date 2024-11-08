@@ -3,6 +3,7 @@ using Entities.Models;
 using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
+using Repositories.EFCore.Extensions;
 
 namespace Repositories.EFCore
 {
@@ -28,9 +29,11 @@ namespace Repositories.EFCore
             return PagedList<Recipe>.ToPagedList(recipes, recipeParameters.PageNumber, recipeParameters.PageSize);
         }
 
+        //to do : handle this method in GetAllRecipesAsync(send parameters isCategoryIncluded)
         public async Task<IEnumerable<Recipe>> GetAllRecipesWithCategoriesAsync(bool trackChanges)
         {
-            return await _context.Recipes.Include(r => r.Category).OrderBy(b=>b.Id).ToListAsync();
+            return await _context.Recipes.Include(r => r.Category).OrderBy(b => b.Id).ToListAsync();
+
         }
 
         public async Task<Recipe> GetOneRecipeByIdAsync(int id, bool trackChanges) =>

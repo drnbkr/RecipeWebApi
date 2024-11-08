@@ -1,8 +1,7 @@
 using System.Linq.Dynamic.Core;
 using Entities.Models;
-using Repositories.EFCore.Extensions;
 
-namespace Repositories.EFCore
+namespace Repositories.EFCore.Extensions
 {
     public static class RecipeRepositoryExtensions
     {

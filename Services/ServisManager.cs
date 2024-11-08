@@ -8,12 +8,14 @@ namespace Services
         private readonly IRecipeService _recipeService;
         private readonly ICategoryService _categoryService;
         private readonly IAuthenticationService _authenticationService;
+        private readonly IIngredientService _ingredientService;
 
-        public ServisManager(IRecipeService recipeService, ICategoryService categoryService, IAuthenticationService authenticationService)
+        public ServisManager(IRecipeService recipeService, ICategoryService categoryService, IAuthenticationService authenticationService, IIngredientService ingredientService)
         {
             _recipeService = recipeService;
             _categoryService = categoryService;
             _authenticationService = authenticationService;
+            _ingredientService = ingredientService;
         }
 
         // public ServisManager(IRepositoryManager repositoryManager,
@@ -32,6 +34,8 @@ namespace Services
 
         public IAuthenticationService AuthenticationService => _authenticationService;
 
-        public ICategoryService CategoryService => _categoryService ;
+        public ICategoryService CategoryService => _categoryService;
+
+        public IIngredientService IngredientService => _ingredientService;
     }
 }

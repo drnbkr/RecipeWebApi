@@ -4,6 +4,7 @@ namespace Repositories.Contracts
     {
         IRecipeRepository Recipe { get; }
         ICategoryRepository Category { get; }
+        IIngredientRepository Ingredient { get; }
         Task SaveAsync();
     }
 }

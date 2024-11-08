@@ -14,9 +14,12 @@ namespace RecipeWebApi.Utilities.AutoMapper
             CreateMap<RecipeDtoForInsertion, Recipe>();
 
             CreateMap<UserForRegistrationDto, User>();
-            
+
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDtoForInsertion, Category>();
+
+            CreateMap<Ingredient, IngredientDto>();
+            CreateMap<IngredientDtoForManipulation, Ingredient>();
         }
     }
 }
