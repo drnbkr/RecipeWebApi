@@ -4,7 +4,7 @@ namespace Entities.Models
     {
         public int Id { get; set; }
         public string? Name { get; set; }
-        public decimal Calorie { get; set; }
+        public decimal? Calorie { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 using System.Dynamic;
 using AutoMapper;
-using Entities.Dtos;
+using Entities.Dtos.Recipe;
 using Entities.Exceptions;
 using Entities.Models;
 using Entities.RequestFeatures;
@@ -34,9 +34,30 @@ namespace Services
             var category = await _categoryService.GetOneCategoryByIdAsync(recipeDtoForInsertion.CategoryId, trackChanges: false);
 
             var entity = _mapper.Map<Recipe>(recipeDtoForInsertion);
+
+            //to do : calculate calorie after convert unit to 100 gram
+            //to do : search about where is the best place to keep  common methods  in project and carry them to there
+            // Calorie hesaplama
+            decimal totalCalories = 0;
+            foreach (var recipeIngredients in entity.RecipeIngredients)
+            {
+                var ingredient = await _manager.Ingredient.GetIngredientByIdAsync(recipeIngredients.IngredientId, trackChanges: false);
+                totalCalories += CalculateCalories(recipeIngredients.Quantity, recipeIngredients.Unit, ingredient.Calorie);
+            }
+            entity.Calorie = totalCalories;
+
             _manager.Recipe.CreateOneRecipe(entity);
             await _manager.SaveAsync();
-            return _mapper.Map<RecipeDto>(entity);
+            return await GetOneRecipeByIdAsync(entity.Id, trackChanges: false);
+        }
+        private decimal CalculateCalories(decimal? quantity, string? unit, decimal? caloriePerUnit)
+        {
+            if (quantity.HasValue && caloriePerUnit.HasValue)
+            {
+                // Birim başına kalori hesaplaması
+                return quantity.Value * caloriePerUnit.Value;
+            }
+            return 0;
         }
 
         public async Task DeleteOneRecipeAsync(int id, bool trackChanges)
@@ -85,10 +106,10 @@ namespace Services
             await _manager.SaveAsync();
         }
 
-        public async Task UpdateOneRecipeAsync(int id, RecipeDtoForUpdate recipeDto, bool trackChanges)
+        public async Task UpdateOneRecipeAsync(int id, RecipeDtoForUpdate recipeDtoForUpdate, bool trackChanges)
         {
             var entity = await GetOneRecipeAndCheckExist(id, trackChanges);
-            entity = _mapper.Map<Recipe>(recipeDto);
+            entity = _mapper.Map<Recipe>(recipeDtoForUpdate);
             _manager.Recipe.Update(entity);
             await _manager.SaveAsync();
         }

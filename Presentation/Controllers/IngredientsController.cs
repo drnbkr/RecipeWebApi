@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Entities.Dtos.Ingredient;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,6 @@ namespace Presentation.Controllers
 
         //to do control cashing for this endpoint and add cache profile if needed
         [Authorize(Roles = "Editor, Admin, User")]
-        [HttpHead]
         [HttpGet(Name = "GetAllIngredientsAsync")]
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
         public async Task<IActionResult> GetAllIngredientsAsync([FromQuery] IngredientParameters ingredientParameters)
@@ -36,8 +36,23 @@ namespace Presentation.Controllers
 
         }
 
+        [Authorize(Roles = "Admin, Editor")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [HttpPost(Name = "CreateOneIngredientAsync")]
+        public async Task<IActionResult> CreateOneIngredientAsync([FromBody] IngredientDtoForManipulation ingredientDtoForManipulation)
+        {
+            var ingredient = await _manager.IngredientService.CreateOneIngredientAsync(ingredientDtoForManipulation);
 
-        //to do create one ingredient endpoint
-        //to do update one ingredient endpoint
+            return StatusCode(201, ingredient);
+        }
+
+
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [HttpPut("{id:int}", Name = "UpdateOneIngredientAsync")]
+        public async Task<IActionResult> UpdateOneIngredientAsync([FromRoute(Name = "id")] int id, [FromBody] IngredientDtoForUpdate ingredientDtoForUpdate)
+        {
+            await _manager.IngredientService.UpdateOneIngredientAsync(id, ingredientDtoForUpdate, trackChanges: false);
+            return NoContent();
+        }
     }
 }

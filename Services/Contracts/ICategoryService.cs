@@ -1,4 +1,4 @@
-using Entities.Dtos;
+using Entities.Dtos.Category;
 
 namespace Services.Contracts
 {

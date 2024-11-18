@@ -1,5 +1,5 @@
 using System.Dynamic;
-using Entities.Dtos;
+using Entities.Dtos.Ingredient;
 using Entities.RequestFeatures;
 
 namespace Services.Contracts
@@ -10,6 +10,8 @@ namespace Services.Contracts
         Task<(IEnumerable<ExpandoObject> ingredients, MetaData metaData)> GetAllIngredientsAsync(IngredientParameters ingredientParameters, bool trackChanges);
         Task<IngredientDto> CreateOneIngredientAsync(IngredientDtoForManipulation ingredientDtoForManipulation);
         Task UpdateOneIngredientAsync(int id, IngredientDtoForUpdate ingredientDtoForUpdate, bool trackChanges);
+        Task<IngredientDto> GetOneIngredientByIdAsync(int id, bool trackChanges);
+
         
     }
 }

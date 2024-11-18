@@ -1,6 +1,6 @@
 
 using System.Text;
-using Entities.Dtos;
+using Entities.Dtos.Recipe;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Net.Http.Headers;
 

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Entities.Dtos
+namespace Entities.Dtos.Category
 {
     public record CategoryDtoForUpdate : CategoryDtoForInsertion
     {

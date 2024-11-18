@@ -8,5 +8,6 @@ namespace Repositories.Contracts
         void CreateOneIngredient(Ingredient ingredient);
         void UpdateOneIngredient(Ingredient ingredient);
         Task<PagedList<Ingredient>> GetAllIngredientsAsync(IngredientParameters ingredientParameters, bool trackChanges);
+        Task<Ingredient> GetIngredientByIdAsync(int id, bool trackChanges);
     }
 }

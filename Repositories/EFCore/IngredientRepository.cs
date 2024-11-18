@@ -30,5 +30,9 @@ namespace Repositories.EFCore
 
             return PagedList<Ingredient>.ToPagedList(ingredients, ingredientParameters.PageNumber, ingredientParameters.PageSize);
         }
+
+        public async Task<Ingredient> GetIngredientByIdAsync(int id, bool trackChanges) =>
+            await FindByCondition(i => i.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
+
     }
 }

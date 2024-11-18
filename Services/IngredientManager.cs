@@ -1,6 +1,8 @@
 using System.Dynamic;
 using AutoMapper;
 using Entities.Dtos;
+using Entities.Dtos.Ingredient;
+using Entities.Exceptions;
 using Entities.Models;
 using Entities.RequestFeatures;
 using Repositories.Contracts;
@@ -38,14 +40,14 @@ namespace Services
         }
         public async Task UpdateOneIngredientAsync(int id, IngredientDtoForUpdate ingredientDtoForUpdate, bool trackChanges)
         {
-            //todo check if ingredient exists
-            var entity = _mapper.Map<Ingredient>(ingredientDtoForUpdate);
+            var entity = await GetOneIngredientAndCheckExist(id, trackChanges);
+            entity = _mapper.Map<Ingredient>(ingredientDtoForUpdate);
             //todo check entity name if ingredient already exists(maybe need to create GetIngredientByNameAsync)
             // if (ingredient already exist)
             // {
             //     throw new IngredientAlreadyExistsException(ingredientDtoForManipulation.Name);
             // }
-            _manager.Ingredient.UpdateOneIngredient(entity);
+            _manager.Ingredient.Update(entity);
             await _manager.SaveAsync();
         }
 
@@ -57,5 +59,19 @@ namespace Services
             return (ingredients: shapedData, metaData: ingredientsWithMetaData.MetaData);
         }
 
+        public async Task<IngredientDto> GetOneIngredientByIdAsync(int id, bool trackChanges)
+        {
+            var entity = await GetOneIngredientAndCheckExist(id, trackChanges);
+            return _mapper.Map<IngredientDto>(entity);
+        }
+
+        private async Task<Ingredient> GetOneIngredientAndCheckExist(int id, bool trackChanges)
+        {
+            var ingredient = await _manager.Ingredient.GetIngredientByIdAsync(id, trackChanges);
+            if (ingredient == null)
+                throw new IngredientNotFoundException(id);
+
+            return ingredient;
+        }
     }
 }

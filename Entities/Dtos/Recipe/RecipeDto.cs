@@ -1,6 +1,7 @@
-using Entities.Models;
 
-namespace Entities.Dtos
+using Entities.Dtos.RecipeIngredient;
+
+namespace Entities.Dtos.Recipe
 {
     public record RecipeDto
     {
@@ -10,5 +11,6 @@ namespace Entities.Dtos
         public decimal Calorie { get; set; }
         public int CategoryId { get; set; }
         public DateTime CreatedDate { get; set; }
+        public ICollection<RecipeIngredientDto> RecipeIngredients { get; set; }
     }
 }

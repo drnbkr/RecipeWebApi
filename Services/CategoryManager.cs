@@ -1,5 +1,5 @@
 using AutoMapper;
-using Entities.Dtos;
+using Entities.Dtos.Category;
 using Entities.Exceptions;
 using Entities.Models;
 using Repositories.Contracts;

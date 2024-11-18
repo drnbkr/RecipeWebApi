@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
+using Entities.Dtos.RecipeIngredient;
 
-namespace Entities.Dtos
+namespace Entities.Dtos.Recipe
 {
     public abstract record RecipeDtoForManipulation
     {
@@ -18,5 +19,7 @@ namespace Entities.Dtos
 
         [Required(ErrorMessage = "CategoryId is a required.")]
         public int CategoryId { get; init; }
+
+        public ICollection<RecipeIngredientDto> RecipeIngredients { get; init; }
     }
 }

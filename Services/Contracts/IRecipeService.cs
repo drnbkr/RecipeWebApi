@@ -1,5 +1,6 @@
 using System.Dynamic;
 using Entities.Dtos;
+using Entities.Dtos.Recipe;
 using Entities.Models;
 using Entities.RequestFeatures;
 

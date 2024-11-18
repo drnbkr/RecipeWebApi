@@ -1,4 +1,4 @@
-namespace Entities.Dtos
+namespace Entities.Dtos.Category
 {
     public record CategoryDto
     {

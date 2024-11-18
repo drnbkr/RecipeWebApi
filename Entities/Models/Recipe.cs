@@ -9,5 +9,6 @@ namespace Entities.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public DateTime CreatedDate { get; set; }
+        public ICollection<RecipeIngredient> RecipeIngredients { get; set; }
     }
 }

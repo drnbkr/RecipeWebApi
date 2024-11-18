@@ -1,6 +1,7 @@
 using System.Text;
 using AspNetCoreRateLimit;
-using Entities.Dtos;
+using Entities.Dtos.Ingredient;
+using Entities.Dtos.Recipe;
 using Entities.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
