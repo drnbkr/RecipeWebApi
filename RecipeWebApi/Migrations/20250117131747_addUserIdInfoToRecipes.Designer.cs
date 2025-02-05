@@ -12,8 +12,8 @@ using Repositories.EFCore;
 namespace RecipeWebApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20241113200104_MakeCalorieNullable")]
-    partial class MakeCalorieNullable
+    [Migration("20250117131747_addUserIdInfoToRecipes")]
+    partial class addUserIdInfoToRecipes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -130,6 +130,86 @@ namespace RecipeWebApi.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Entities.Models.Media", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<bool>("IsCover")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MediaPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MediaType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RecipeInstructionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipeId");
+
+                    b.HasIndex("RecipeInstructionId");
+
+                    b.ToTable("Medias");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCover = false,
+                            MediaPath = "https://via.placeholder.com/150",
+                            MediaType = "image",
+                            RecipeInstructionId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCover = false,
+                            MediaPath = "https://via.placeholder.com/150",
+                            MediaType = "image",
+                            RecipeInstructionId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCover = false,
+                            MediaPath = "https://via.placeholder.com/150",
+                            MediaType = "image",
+                            RecipeInstructionId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCover = false,
+                            MediaPath = "https://via.placeholder.com/250",
+                            MediaType = "image",
+                            RecipeId = 3
+                        });
+                });
+
             modelBuilder.Entity("Entities.Models.Recipe", b =>
                 {
                     b.Property<int>("Id")
@@ -156,9 +236,21 @@ namespace RecipeWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Recipes");
 
@@ -170,7 +262,9 @@ namespace RecipeWebApi.Migrations
                             CategoryId = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Menemen Menemen pişmandır yemeyen.",
-                            Title = "Menemen"
+                            Title = "Menemen",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "ade27b87-2cb8-4f43-a9fc-eb6db952793c"
                         },
                         new
                         {
@@ -179,7 +273,9 @@ namespace RecipeWebApi.Migrations
                             CategoryId = 3,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Tereyağlı pilavdır",
-                            Title = "Pilav"
+                            Title = "Pilav",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "ade27b87-2cb8-4f43-a9fc-eb6db952793c"
                         },
                         new
                         {
@@ -188,7 +284,134 @@ namespace RecipeWebApi.Migrations
                             CategoryId = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Çorba severim.",
-                            Title = "Çorba"
+                            Title = "Çorba",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "ade27b87-2cb8-4f43-a9fc-eb6db952793c"
+                        });
+                });
+
+            modelBuilder.Entity("Entities.Models.RecipeIngredient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("Quantity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Unit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IngredientId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("RecipeIngredients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IngredientId = 1,
+                            Quantity = 2m,
+                            RecipeId = 1,
+                            Unit = "adet"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IngredientId = 2,
+                            Quantity = 3m,
+                            RecipeId = 1,
+                            Unit = "adet"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IngredientId = 3,
+                            Quantity = 1m,
+                            RecipeId = 1,
+                            Unit = "adet"
+                        });
+                });
+
+            modelBuilder.Entity("Entities.Models.RecipeInstruction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Step")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("RecipeInstructions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Fırını 180 dereceye ayarlayın.",
+                            RecipeId = 1,
+                            Step = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Un, kabartma tozu ve tuzu karıştırın.",
+                            RecipeId = 1,
+                            Step = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Yumurtaları çırpın.",
+                            RecipeId = 1,
+                            Step = 3
                         });
                 });
 
@@ -431,15 +654,68 @@ namespace RecipeWebApi.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.Models.Media", b =>
+                {
+                    b.HasOne("Entities.Models.Recipe", "Recipe")
+                        .WithMany("Medias")
+                        .HasForeignKey("RecipeId");
+
+                    b.HasOne("Entities.Models.RecipeInstruction", "RecipeInstruction")
+                        .WithMany("Medias")
+                        .HasForeignKey("RecipeInstructionId");
+
+                    b.Navigation("Recipe");
+
+                    b.Navigation("RecipeInstruction");
+                });
+
             modelBuilder.Entity("Entities.Models.Recipe", b =>
                 {
                     b.HasOne("Entities.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Recipes")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany("Recipes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.RecipeIngredient", b =>
+                {
+                    b.HasOne("Entities.Models.Ingredient", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.Recipe", "Recipe")
+                        .WithMany("RecipeIngredients")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ingredient");
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("Entities.Models.RecipeInstruction", b =>
+                {
+                    b.HasOne("Entities.Models.Recipe", "Recipe")
+                        .WithMany("RecipeInstructions")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Recipe");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -491,6 +767,30 @@ namespace RecipeWebApi.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Models.Category", b =>
+                {
+                    b.Navigation("Recipes");
+                });
+
+            modelBuilder.Entity("Entities.Models.Recipe", b =>
+                {
+                    b.Navigation("Medias");
+
+                    b.Navigation("RecipeIngredients");
+
+                    b.Navigation("RecipeInstructions");
+                });
+
+            modelBuilder.Entity("Entities.Models.RecipeInstruction", b =>
+                {
+                    b.Navigation("Medias");
+                });
+
+            modelBuilder.Entity("Entities.Models.User", b =>
+                {
+                    b.Navigation("Recipes");
                 });
 #pragma warning restore 612, 618
         }

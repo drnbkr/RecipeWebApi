@@ -75,19 +75,18 @@ namespace RecipeWebApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Recipes",
+                name: "Ingredients",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Calorie = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Calorie = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Recipes", x => x.Id);
+                    table.PrimaryKey("PK_Ingredients", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -108,7 +107,7 @@ namespace RecipeWebApi.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -129,7 +128,7 @@ namespace RecipeWebApi.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -149,7 +148,7 @@ namespace RecipeWebApi.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -167,13 +166,13 @@ namespace RecipeWebApi.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -193,7 +192,120 @@ namespace RecipeWebApi.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Recipes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Calorie = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Recipes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Recipes_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Recipes_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RecipeIngredients",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RecipeId = table.Column<int>(type: "int", nullable: false),
+                    IngredientId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Unit = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RecipeIngredients", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RecipeIngredients_Ingredients_IngredientId",
+                        column: x => x.IngredientId,
+                        principalTable: "Ingredients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_RecipeIngredients_Recipes_RecipeId",
+                        column: x => x.RecipeId,
+                        principalTable: "Recipes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RecipeInstructions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RecipeId = table.Column<int>(type: "int", nullable: false),
+                    Step = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RecipeInstructions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RecipeInstructions_Recipes_RecipeId",
+                        column: x => x.RecipeId,
+                        principalTable: "Recipes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Medias",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RecipeId = table.Column<int>(type: "int", nullable: true),
+                    RecipeInstructionId = table.Column<int>(type: "int", nullable: true),
+                    MediaPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MediaType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsCover = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Medias", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Medias_RecipeInstructions_RecipeInstructionId",
+                        column: x => x.RecipeInstructionId,
+                        principalTable: "RecipeInstructions",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Medias_Recipes_RecipeId",
+                        column: x => x.RecipeId,
+                        principalTable: "Recipes",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -201,9 +313,9 @@ namespace RecipeWebApi.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "a32e0ad8-eec1-45a9-96ee-f367cf2981c2", null, "Admin", "ADMIN" },
-                    { "b8ca8033-de61-4481-8a5e-e06cac8e7f33", null, "User", "USER" },
-                    { "c1566e95-2f1e-4584-8dcd-068f2276665d", null, "Editor", "EDITOR" }
+                    { "2bcaf9d9-fa5f-4188-811f-4b0268bfde60", null, "Editor", "EDITOR" },
+                    { "b7afb518-6211-47f2-a7cb-95e7b500d74f", null, "User", "USER" },
+                    { "f16264a2-d99b-4eaf-9052-8a5581e6ab85", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -218,13 +330,58 @@ namespace RecipeWebApi.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Recipes",
-                columns: new[] { "Id", "Calorie", "CategoryId", "Title" },
+                table: "Ingredients",
+                columns: new[] { "Id", "Calorie", "Name" },
                 values: new object[,]
                 {
-                    { 1, 200m, 1, "Menemen" },
-                    { 2, 300m, 3, "Pilav" },
-                    { 3, 150m, 1, "Çorba" }
+                    { 1, 20m, "Domates" },
+                    { 2, 30m, "Biber" },
+                    { 3, 10m, "Soğan" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Recipes",
+                columns: new[] { "Id", "Calorie", "CategoryId", "Description", "Title", "UpdatedBy", "UpdatedDate", "UserId" },
+                values: new object[,]
+                {
+                    { 1, 200m, 1, "Menemen Menemen pişmandır yemeyen.", "Menemen", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 2, 300m, 3, "Tereyağlı pilavdır", "Pilav", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 3, 150m, 1, "Çorba severim.", "Çorba", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Medias",
+                columns: new[] { "Id", "CreatedBy", "IsCover", "MediaPath", "MediaType", "RecipeId", "RecipeInstructionId" },
+                values: new object[] { 4, null, false, "https://via.placeholder.com/250", "image", 3, null });
+
+            migrationBuilder.InsertData(
+                table: "RecipeIngredients",
+                columns: new[] { "Id", "CreatedBy", "IngredientId", "Quantity", "RecipeId", "Unit" },
+                values: new object[,]
+                {
+                    { 1, null, 1, 2m, 1, "adet" },
+                    { 2, null, 2, 3m, 1, "adet" },
+                    { 3, null, 3, 1m, 1, "adet" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RecipeInstructions",
+                columns: new[] { "Id", "CreatedBy", "Description", "RecipeId", "Step" },
+                values: new object[,]
+                {
+                    { 1, null, "Fırını 180 dereceye ayarlayın.", 1, 1 },
+                    { 2, null, "Un, kabartma tozu ve tuzu karıştırın.", 1, 2 },
+                    { 3, null, "Yumurtaları çırpın.", 1, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Medias",
+                columns: new[] { "Id", "CreatedBy", "IsCover", "MediaPath", "MediaType", "RecipeId", "RecipeInstructionId" },
+                values: new object[,]
+                {
+                    { 1, null, false, "https://via.placeholder.com/150", "image", null, 1 },
+                    { 2, null, false, "https://via.placeholder.com/150", "image", null, 2 },
+                    { 3, null, false, "https://via.placeholder.com/150", "image", null, 3 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -265,6 +422,41 @@ namespace RecipeWebApi.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Medias_RecipeId",
+                table: "Medias",
+                column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Medias_RecipeInstructionId",
+                table: "Medias",
+                column: "RecipeInstructionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeIngredients_IngredientId",
+                table: "RecipeIngredients",
+                column: "IngredientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeIngredients_RecipeId",
+                table: "RecipeIngredients",
+                column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeInstructions_RecipeId",
+                table: "RecipeInstructions",
+                column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Recipes_CategoryId",
+                table: "Recipes",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Recipes_UserId",
+                table: "Recipes",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -279,23 +471,35 @@ namespace RecipeWebApi.Migrations
             migrationBuilder.DropTable(
                 name: "AspNetUserLogins");
 
-            // migrationBuilder.DropTable(
-            //     name: "AspNetUserRoles");
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Medias");
 
             migrationBuilder.DropTable(
-                name: "Recipes");
+                name: "RecipeIngredients");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "RecipeInstructions");
+
+            migrationBuilder.DropTable(
+                name: "Ingredients");
+
+            migrationBuilder.DropTable(
+                name: "Recipes");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }

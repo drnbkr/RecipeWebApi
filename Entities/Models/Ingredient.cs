@@ -8,3 +8,5 @@ namespace Entities.Models
         public DateTime CreatedDate { get; set; }
     }
 }
+
+//to do: add type of ingredient(fruit, vegetable, meat, etc) 

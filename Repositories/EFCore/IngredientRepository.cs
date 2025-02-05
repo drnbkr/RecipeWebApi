@@ -16,6 +16,10 @@ namespace Repositories.EFCore
         {
             Create(ingredient);
         }
+        // public void CreateRecipeIngredient(RecipeIngredient recipeIngredient)
+        // {
+        //     CreateRecipeIngredient(recipeIngredient);
+        // }
 
         public void UpdateOneIngredient(Ingredient ingredient)
         {

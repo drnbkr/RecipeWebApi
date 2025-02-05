@@ -84,7 +84,7 @@ namespace Services
             else
             {
                 // Traditional login
-                _user = await _userManager.FindByNameAsync(userForAuthenticationDto.UserName);
+                _user = await _userManager.FindByEmailAsync(userForAuthenticationDto.Email);
             }
 
             var result = _user != null && (string.IsNullOrEmpty(userForAuthenticationDto.Password) || await _userManager.CheckPasswordAsync(_user, userForAuthenticationDto.Password));
@@ -108,7 +108,8 @@ namespace Services
         {
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.Name, _user.UserName)
+                new Claim(ClaimTypes.Name, _user.UserName),
+                new Claim(ClaimTypes.Email, _user.Email)
             };
 
             var roles = await _userManager.GetRolesAsync(_user);
@@ -170,11 +171,11 @@ namespace Services
 
             return principal;
         }
-
         public async Task<TokenDto> RefreshToken(TokenDto tokenDto)
         {
             var principal = GetPrincipalFromExpiredToken(tokenDto.AccessToken);
-            var user = await _userManager.FindByNameAsync(principal.Identity.Name);
+            var email = principal.FindFirst(ClaimTypes.Email)?.Value; 
+            var user = await _userManager.FindByEmailAsync(email);
 
             if (user == null || user.RefreshToken != tokenDto.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
             {
@@ -185,5 +186,11 @@ namespace Services
             return await CreateToken(populateExp: false);
         }
 
+        public async Task<bool> CheckEmail(string email)
+        {
+            _user = await _userManager.FindByEmailAsync(email);
+            var result = _user != null;
+            return result;
+        }
     }
 }

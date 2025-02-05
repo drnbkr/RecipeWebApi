@@ -1,4 +1,6 @@
 using Entities.Dtos;
+using Entities.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.ActionFilters;
 using Services.Contracts;
@@ -11,11 +13,21 @@ namespace Presentation.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IServiceManager _service;
-        public AuthenticationController(IServiceManager service)
+        private readonly UserManager<User> _userManager;
+        public AuthenticationController(IServiceManager service, UserManager<User> userManager)
         {
             _service = service;
+            _userManager = userManager;
         }
 
+        [HttpPost("check")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<IActionResult> CheckEmail([FromBody] UserForRegistrationDto userForRegistrationDto)
+        {
+            var result = await _service.AuthenticationService.CheckEmail(userForRegistrationDto.Email);
+
+            return Ok(result);
+        }
 
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]  // This is the filter that will be executed for Dto validation(dto cannot be empty, and dto name must contains "Dto" for this filter to be executed) if dto empty return 400
@@ -35,10 +47,31 @@ namespace Presentation.Controllers
 
             }
 
-            return StatusCode(201);
+            // Kullanıcı için token oluşturma
+            var tokenDto = await _service.AuthenticationService.CreateToken(populateExp: true);
 
+            // Kullanıcı bilgilerini alma
+            var user = await _userManager.FindByEmailAsync(userForRegistrationDto.Email);
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            // Yanıt gövdesi
+            var response = new
+            {
+                Token = tokenDto,
+                User = new
+                {
+                    user.Id,
+                    user.UserName,
+                    user.Email
+                }
+            };
+
+            // 201 Created yanıtını döndür
+            return StatusCode(201, response);
         }
-
 
         [HttpPost("login")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -49,10 +82,22 @@ namespace Presentation.Controllers
                 return Unauthorized();
             }
 
-
             var tokenDto = await _service.AuthenticationService.CreateToken(populateExp: true);
+            var user = await _userManager.FindByEmailAsync(userForAuthenticationDto.Email);
 
-            return Ok(tokenDto);
+            // Yanıt gövdesi
+            var response = new
+            {
+                Token = tokenDto,
+                User = new
+                {
+                    userID = user.Id,
+                    userName = user.UserName,
+                    email = user.Email
+                }
+            };
+
+            return Ok(response);
         }
 
         [HttpPost("refresh")]
@@ -61,8 +106,8 @@ namespace Presentation.Controllers
         {
             var tokenDtoToReturn = await _service.AuthenticationService.RefreshToken(tokenDto);
 
-            return Ok(tokenDtoToReturn);    
+            return Ok(tokenDtoToReturn);
         }
-        
+
     }
 }

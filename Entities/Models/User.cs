@@ -11,6 +11,7 @@ namespace Entities.Models
         public string? GoogleId { get; set; }
         public string? AppleId { get; set; }
         public string? FacebookId { get; set; }
+        public ICollection<Recipe> Recipes { get; set; }
 
     }
 }

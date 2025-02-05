@@ -14,7 +14,8 @@ namespace Repositories.EFCore
         public DbSet<Category> Categories { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
-        //to be continued
+        public DbSet<RecipeInstruction> RecipeInstructions { get; set; }
+        public DbSet<Media> Medias { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -22,6 +23,5 @@ namespace Repositories.EFCore
             // modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
-
     }
 }

@@ -2,6 +2,7 @@ using System.Dynamic;
 using AutoMapper;
 using Entities.Dtos;
 using Entities.Dtos.Ingredient;
+using Entities.Dtos.RecipeIngredient;
 using Entities.Exceptions;
 using Entities.Models;
 using Entities.RequestFeatures;
@@ -38,6 +39,13 @@ namespace Services
             await _manager.SaveAsync();
             return _mapper.Map<IngredientDto>(entity);
         }
+        // public async Task<RecipeIngredientDtoForManipulation> CreateRecipeIngredientAsync(RecipeIngredientDtoForManipulation recipeIngredientDtoForManipulation)
+        // {
+        //     var entity = _mapper.Map<RecipeIngredient>(recipeIngredientDtoForManipulation);
+        //     _manager.Ingredient.CreateRecipeIngredient(entity);
+        //     await _manager.SaveAsync();
+        //     return _mapper.Map<RecipeIngredientDtoForManipulation>(entity);
+        // }
         public async Task UpdateOneIngredientAsync(int id, IngredientDtoForUpdate ingredientDtoForUpdate, bool trackChanges)
         {
             var entity = await GetOneIngredientAndCheckExist(id, trackChanges);

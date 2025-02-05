@@ -1,5 +1,7 @@
 using System.Text.Json;
 using Entities.Dtos.Recipe;
+using Entities.Dtos.RecipeIngredient;
+using Entities.Models;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
@@ -58,8 +60,25 @@ namespace Presentation.Controllers
         [HttpPost(Name = "CreateOneRecipeAsync")]
         public async Task<IActionResult> CreateOneRecipeAsync([FromBody] RecipeDtoForInsertion recipeDtoForInsertion)
         {
-            
+
             var recipe = await _manager.RecipeService.CreateOneRecipeAsync(recipeDtoForInsertion);
+            // var userId = recipe.UserId;
+
+            // if (recipeDtoForInsertion.RecipeIngredients != null)
+            // {
+            //     foreach (var ing in recipeDtoForInsertion.RecipeIngredients)
+            //     {
+            //         var recipeIngredient = new RecipeIngredientDtoForManipulation
+            //         {
+            //             RecipeId = Convert.ToInt32(userId),
+            //             Quantity = ing.Quantity,
+            //             Unit = ing.Unit,
+            //             CreatedDate = DateTime.UtcNow,
+            //             CreatedBy = userId,
+            //         };
+            //         await _manager.IngredientService.CreateRecipeIngredientAsync(recipeIngredient);
+            //     }
+            // }
 
             return StatusCode(201, recipe);
         }

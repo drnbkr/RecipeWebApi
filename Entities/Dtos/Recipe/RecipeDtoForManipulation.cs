@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Entities.Dtos.RecipeIngredient;
+using Entities.Dtos.RecipeInstruction;
 
 namespace Entities.Dtos.Recipe
 {
@@ -20,6 +21,10 @@ namespace Entities.Dtos.Recipe
         [Required(ErrorMessage = "CategoryId is a required.")]
         public int CategoryId { get; init; }
 
+        [Required(ErrorMessage = "UserId is a required.")]
+        public required string UserId { get; init; }
+
         public ICollection<RecipeIngredientDto> RecipeIngredients { get; init; }
+        public ICollection<RecipeInstructionDto> RecipeInstructions { get; init; }
     }
 }

@@ -47,7 +47,13 @@ namespace Repositories.EFCore
         }
 
         public async Task<Recipe> GetOneRecipeByIdAsync(int id, bool trackChanges) =>
-           await FindByCondition(r => r.Id.Equals(id), trackChanges).Include(ri => ri.RecipeIngredients).ThenInclude(i => i.Ingredient).SingleOrDefaultAsync();
+           await FindByCondition(r => r.Id.Equals(id), trackChanges)
+            .Include(ri => ri.RecipeIngredients)
+                .ThenInclude(i => i.Ingredient)
+            .Include(r => r.RecipeInstructions)
+                .ThenInclude(ri => ri.Medias)
+            .Include(r => r.Medias)
+            .SingleOrDefaultAsync();
 
         public void UpdateOneRecipe(Recipe recipe) => Update(recipe);
     }
