@@ -1,5 +1,7 @@
 using System.Text;
+using Amazon.S3;
 using AspNetCoreRateLimit;
+using Entities.AwsModel;
 using Entities.Dtos.Ingredient;
 using Entities.Dtos.Recipe;
 using Entities.Models;
@@ -198,6 +200,12 @@ namespace RecipeWebApi.Extensions
             });
 
 
+        }
+
+        public static void ConfigureS3Service(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<AwsSettings>(configuration.GetSection("AWS"));
+            services.AddSingleton<IS3Service, S3Service>();
         }
 
         public static void RegisterRepositories(this IServiceCollection services)

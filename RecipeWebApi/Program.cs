@@ -45,6 +45,7 @@ builder.Services.ConfigureRateLimitingOptions();
 builder.Services.AddHttpContextAccessor();
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJwt(builder.Configuration);
+builder.Services.ConfigureS3Service(builder.Configuration);
 
 builder.Services.RegisterRepositories();
 builder.Services.RegisterServices();

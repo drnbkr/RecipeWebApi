@@ -16,9 +16,9 @@ namespace Repositories.EFCore.Config
                 .HasColumnType("decimal(18,2)");
 
             builder.HasData(
-                new Recipe { Id = 1, Title = "Menemen", Description = "Menemen Menemen pişmandır yemeyen.", CategoryId = 1, Calorie = 200, UserId = "ade27b87-2cb8-4f43-a9fc-eb6db952793c" },
-                new Recipe { Id = 2, Title = "Pilav", Description = "Tereyağlı pilavdır", CategoryId = 3, Calorie = 300, UserId = "ade27b87-2cb8-4f43-a9fc-eb6db952793c" },
-                new Recipe { Id = 3, Title = "Çorba", Description = "Çorba severim.", CategoryId = 1, Calorie = 150, UserId = "ade27b87-2cb8-4f43-a9fc-eb6db952793c" }
+                new Recipe { Id = 1, Title = "Menemen", Description = "Menemen Menemen pişmandır yemeyen.", CategoryId = 1, Calorie = 200, UserId = "9825bdbb-101d-49c0-82c8-6c4f54b93253" },
+                new Recipe { Id = 2, Title = "Pilav", Description = "Tereyağlı pilavdır", CategoryId = 3, Calorie = 300, UserId = "9825bdbb-101d-49c0-82c8-6c4f54b93253" },
+                new Recipe { Id = 3, Title = "Çorba", Description = "Çorba severim.", CategoryId = 1, Calorie = 150, UserId = "9825bdbb-101d-49c0-82c8-6c4f54b93253" }
             );
         }
     }

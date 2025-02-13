@@ -16,13 +16,13 @@ namespace Repositories.EFCore
         public void CreateOneRecipe(Recipe recipe)
         {
             Create(recipe);
-            if (recipe.RecipeIngredients != null && recipe.RecipeIngredients.Count != 0)
-            {
-                foreach (var recipeIngredient in recipe.RecipeIngredients)
-                {
-                    _context.RecipeIngredients.Add(recipeIngredient);
-                }
-            }
+            // if (recipe.RecipeIngredients != null && recipe.RecipeIngredients.Count != 0)
+            // {
+            //     foreach (var recipeIngredient in recipe.RecipeIngredients)
+            //     {
+            //         _context.RecipeIngredients.Add(recipeIngredient);
+            //     }
+            // }
         }
 
         public void DeleteOneRecipe(Recipe recipe) => Delete(recipe);

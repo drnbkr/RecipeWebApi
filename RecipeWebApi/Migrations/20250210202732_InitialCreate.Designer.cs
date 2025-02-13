@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositories.EFCore;
 
@@ -11,9 +12,11 @@ using Repositories.EFCore;
 namespace RecipeWebApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20250210202732_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,7 +264,7 @@ namespace RecipeWebApi.Migrations
                             Description = "Menemen Menemen pişmandır yemeyen.",
                             Title = "Menemen",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "9825bdbb-101d-49c0-82c8-6c4f54b93253"
+                            UserId = "ade27b87-2cb8-4f43-a9fc-eb6db952793c"
                         },
                         new
                         {
@@ -272,7 +275,7 @@ namespace RecipeWebApi.Migrations
                             Description = "Tereyağlı pilavdır",
                             Title = "Pilav",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "9825bdbb-101d-49c0-82c8-6c4f54b93253"
+                            UserId = "ade27b87-2cb8-4f43-a9fc-eb6db952793c"
                         },
                         new
                         {
@@ -283,7 +286,7 @@ namespace RecipeWebApi.Migrations
                             Description = "Çorba severim.",
                             Title = "Çorba",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "9825bdbb-101d-49c0-82c8-6c4f54b93253"
+                            UserId = "ade27b87-2cb8-4f43-a9fc-eb6db952793c"
                         });
                 });
 
