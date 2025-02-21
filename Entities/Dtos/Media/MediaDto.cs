@@ -2,13 +2,13 @@ namespace Entities.Dtos.Media
 {
     public record MediaDto
     {
-        public int Id { get; set; }
-        public int? RecipeId { get; set; }
-        public int? RecipeInstructionId { get; set; }
-        public string MediaPath { get; set; }
-        public string MediaType { get; set; }
-        public bool IsCover { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public string? CreatedBy { get; set; }
+        public int Id { get; init; }
+        public int? RecipeId { get; init; }
+        public int? RecipeInstructionId { get; init; }
+        public required string MediaPath { get; init; }
+        public required string MediaType { get; init; }
+        public bool IsCover { get; init; }
+        public DateTime CreatedDate { get; init; }
+        public string? CreatedBy { get; init; }
     }
 }

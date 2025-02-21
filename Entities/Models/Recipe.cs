@@ -4,6 +4,12 @@ namespace Entities.Models
 {
     public class Recipe
     {
+        public Recipe()
+        {
+            RecipeIngredients = new List<RecipeIngredient>();
+            RecipeInstructions = new List<RecipeInstruction>();
+            Medias = new List<Media>();
+        }
         public int Id { get; set; }
         public required String Title { get; set; }
         public string? Description { get; set; }
@@ -17,6 +23,6 @@ namespace Entities.Models
         public User User { get; set; }
         public ICollection<RecipeIngredient> RecipeIngredients { get; set; }
         public ICollection<RecipeInstruction> RecipeInstructions { get; set; }
-        public ICollection<Media> Medias { get; set; }
+        public ICollection<Media>? Medias { get; set; }
     }
 }

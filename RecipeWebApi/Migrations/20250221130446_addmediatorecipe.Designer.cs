@@ -12,8 +12,8 @@ using Repositories.EFCore;
 namespace RecipeWebApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20250210202732_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250221130446_addmediatorecipe")]
+    partial class addmediatorecipe
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -198,15 +198,6 @@ namespace RecipeWebApi.Migrations
                             MediaPath = "https://via.placeholder.com/150",
                             MediaType = "image",
                             RecipeInstructionId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsCover = false,
-                            MediaPath = "https://via.placeholder.com/250",
-                            MediaType = "image",
-                            RecipeId = 3
                         });
                 });
 
@@ -264,7 +255,7 @@ namespace RecipeWebApi.Migrations
                             Description = "Menemen Menemen pişmandır yemeyen.",
                             Title = "Menemen",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "ade27b87-2cb8-4f43-a9fc-eb6db952793c"
+                            UserId = "9825bdbb-101d-49c0-82c8-6c4f54b93253"
                         },
                         new
                         {
@@ -275,7 +266,7 @@ namespace RecipeWebApi.Migrations
                             Description = "Tereyağlı pilavdır",
                             Title = "Pilav",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "ade27b87-2cb8-4f43-a9fc-eb6db952793c"
+                            UserId = "9825bdbb-101d-49c0-82c8-6c4f54b93253"
                         },
                         new
                         {
@@ -286,7 +277,7 @@ namespace RecipeWebApi.Migrations
                             Description = "Çorba severim.",
                             Title = "Çorba",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "ade27b87-2cb8-4f43-a9fc-eb6db952793c"
+                            UserId = "9825bdbb-101d-49c0-82c8-6c4f54b93253"
                         });
                 });
 
@@ -499,6 +490,25 @@ namespace RecipeWebApi.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "9825bdbb-101d-49c0-82c8-6c4f54b93253",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "eae0e6ee-61a1-4b10-a377-080f5b506cd4",
+                            Email = "direnbukre@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DIRENBUKRE@GMAIL.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKbYJMt/3mzc17me0Yo1of6YP1rXD3DkicUIj7O7y+i2D4ccM+9nmXblP+Pb2rFkHA==",
+                            PhoneNumberConfirmed = false,
+                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "drnbkr"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -662,7 +672,8 @@ namespace RecipeWebApi.Migrations
 
                     b.HasOne("Entities.Models.RecipeInstruction", "RecipeInstruction")
                         .WithMany("Medias")
-                        .HasForeignKey("RecipeInstructionId");
+                        .HasForeignKey("RecipeInstructionId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Recipe");
 
@@ -674,13 +685,13 @@ namespace RecipeWebApi.Migrations
                     b.HasOne("Entities.Models.Category", "Category")
                         .WithMany("Recipes")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Entities.Models.User", "User")
                         .WithMany("Recipes")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Category");

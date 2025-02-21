@@ -8,11 +8,11 @@ namespace Entities.Models
         public int? RecipeId { get; set; }
         [JsonIgnore]
         [XmlIgnore]
-        public Recipe Recipe { get; set; }
+        public Recipe? Recipe { get; set; }
         public int? RecipeInstructionId { get; set; }
         [JsonIgnore]
         [XmlIgnore]
-        public RecipeInstruction RecipeInstruction { get; set; }
+        public RecipeInstruction? RecipeInstruction { get; set; }
         public string MediaPath { get; set; }
         public string MediaType { get; set; }
         public bool IsCover { get; set; }

@@ -52,7 +52,6 @@ namespace Repositories.EFCore
                 .ThenInclude(i => i.Ingredient)
             .Include(r => r.RecipeInstructions)
                 .ThenInclude(ri => ri.Medias)
-            .Include(r => r.Medias)
             .SingleOrDefaultAsync();
 
         public void UpdateOneRecipe(Recipe recipe) => Update(recipe);

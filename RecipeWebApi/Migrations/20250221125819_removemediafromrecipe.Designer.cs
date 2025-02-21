@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositories.EFCore;
 
@@ -11,9 +12,11 @@ using Repositories.EFCore;
 namespace RecipeWebApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20250221125819_removemediafromrecipe")]
+    partial class removemediafromrecipe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,15 +157,10 @@ namespace RecipeWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RecipeId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("RecipeInstructionId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RecipeId");
 
                     b.HasIndex("RecipeInstructionId");
 
@@ -493,13 +491,13 @@ namespace RecipeWebApi.Migrations
                         {
                             Id = "9825bdbb-101d-49c0-82c8-6c4f54b93253",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1af99313-2169-4f0d-98a2-994466477a70",
+                            ConcurrencyStamp = "c634c119-3755-4b8b-85b8-001c0690c979",
                             Email = "direnbukre@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "DIRENBUKRE@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBBbUqF1VhRQPe4op7kZup923uBwuRYIUJzoN/mCshovq0AySvcX/7kn/6TIVCQgvg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAWxLaIIoNBPURSQ7HpIg7IjlQVjibwhi0Zvh2hnJuFcu1v/pQSc1ElNAeaaTEiIcQ==",
                             PhoneNumberConfirmed = false,
                             RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SecurityStamp = "",
@@ -663,16 +661,10 @@ namespace RecipeWebApi.Migrations
 
             modelBuilder.Entity("Entities.Models.Media", b =>
                 {
-                    b.HasOne("Entities.Models.Recipe", "Recipe")
-                        .WithMany("Medias")
-                        .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
                     b.HasOne("Entities.Models.RecipeInstruction", "RecipeInstruction")
                         .WithMany("Medias")
-                        .HasForeignKey("RecipeInstructionId");
-
-                    b.Navigation("Recipe");
+                        .HasForeignKey("RecipeInstructionId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("RecipeInstruction");
                 });
@@ -784,8 +776,6 @@ namespace RecipeWebApi.Migrations
 
             modelBuilder.Entity("Entities.Models.Recipe", b =>
                 {
-                    b.Navigation("Medias");
-
                     b.Navigation("RecipeIngredients");
 
                     b.Navigation("RecipeInstructions");

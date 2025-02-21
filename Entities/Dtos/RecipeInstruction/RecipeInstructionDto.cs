@@ -4,13 +4,17 @@ namespace Entities.Dtos.RecipeInstruction
 {
     public record RecipeInstructionDto
     {
-        public int Id { get; set; }
-        public int RecipeId { get; set; }
-        public int Step { get; set; }
-        public string Description { get; set; }
-        public ICollection<MediaDto> Medias { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public string? CreatedBy { get; set; }
+        public RecipeInstructionDto()
+        {
+            Medias = new List<MediaDto>();
+        }
+        public int Id { get; init; }
+        public required int RecipeId { get; init; }
+        public int Step { get; init; }
+        public required string Description { get; init; }
+        public ICollection<MediaDto> Medias { get; init; }
+        public DateTime CreatedDate { get; init; }
+        public string? CreatedBy { get; init; }
 
     }
 }

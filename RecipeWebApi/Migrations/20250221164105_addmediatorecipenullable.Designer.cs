@@ -12,8 +12,8 @@ using Repositories.EFCore;
 namespace RecipeWebApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20250210205506_userIDToRecipe")]
-    partial class userIDToRecipe
+    [Migration("20250221164105_addmediatorecipenullable")]
+    partial class addmediatorecipenullable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -198,15 +198,6 @@ namespace RecipeWebApi.Migrations
                             MediaPath = "https://via.placeholder.com/150",
                             MediaType = "image",
                             RecipeInstructionId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsCover = false,
-                            MediaPath = "https://via.placeholder.com/250",
-                            MediaType = "image",
-                            RecipeId = 3
                         });
                 });
 
@@ -499,6 +490,25 @@ namespace RecipeWebApi.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "9825bdbb-101d-49c0-82c8-6c4f54b93253",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8a5233bd-0340-457a-9b43-b804c4271e79",
+                            Email = "direnbukre@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DIRENBUKRE@GMAIL.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAELz63JezRLBS1d9rw492BWlXjwpI6Cp7G1npWgP4nF7KKRJ5XJu8KNBeCOgxd1WMZw==",
+                            PhoneNumberConfirmed = false,
+                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "drnbkr"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -662,7 +672,8 @@ namespace RecipeWebApi.Migrations
 
                     b.HasOne("Entities.Models.RecipeInstruction", "RecipeInstruction")
                         .WithMany("Medias")
-                        .HasForeignKey("RecipeInstructionId");
+                        .HasForeignKey("RecipeInstructionId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Recipe");
 
@@ -674,13 +685,13 @@ namespace RecipeWebApi.Migrations
                     b.HasOne("Entities.Models.Category", "Category")
                         .WithMany("Recipes")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Entities.Models.User", "User")
                         .WithMany("Recipes")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Category");

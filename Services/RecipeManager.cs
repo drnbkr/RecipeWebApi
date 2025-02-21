@@ -44,23 +44,7 @@ namespace Services
                 totalCalories += CalculateCalories(recipeIngredients.Quantity, recipeIngredients.Unit, ingredient.Calorie);
             }
             entity.Calorie = totalCalories;
-
-            //Media dosyalarını S3'e yükleyin ve URL'leri MediaPath'e atayın
-            // foreach (var instruction in recipeDtoForInsertion.RecipeInstructions)
-            // {
-            //     foreach (var mediaDto in instruction.Medias)
-            //     {
-            //         if (mediaDto.File != null)
-            //         {
-            //             var fileName = mediaDto.File.FileName; // Dosya adını alın
-            //             using var stream = mediaDto.File.OpenReadStream(); // Dosya akışını alın
-            //             var url = await _s3StorageService.UploadFileAsync(stream, fileName, mediaDto.File.ContentType);
-            //             mediaDto.MediaPath = url;
-            //         }
-            //     }
-            // }
-
-
+            
             _manager.Recipe.CreateOneRecipe(entity);
             await _manager.SaveAsync();
             return await GetOneRecipeByIdAsync(entity.Id, trackChanges: false);
